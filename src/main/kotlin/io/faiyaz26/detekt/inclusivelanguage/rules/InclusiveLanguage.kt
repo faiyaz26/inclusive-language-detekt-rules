@@ -1,4 +1,4 @@
-package com.faiyaz26.detekt.inclusivelanguage.rules
+package io.faiyaz26.detekt.inclusivelanguage.rules
 
 import io.gitlab.arturbosch.detekt.api.CodeSmell
 import io.gitlab.arturbosch.detekt.api.Config

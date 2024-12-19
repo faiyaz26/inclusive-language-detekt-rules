@@ -1,6 +1,6 @@
-package com.faiyaz26.detekt.inclusivelanguage
+package io.faiyaz26.detekt.inclusivelanguage
 
-import com.faiyaz26.detekt.inclusivelanguage.rules.InclusiveLanguage
+import io.faiyaz26.detekt.inclusivelanguage.rules.InclusiveLanguage
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.api.RuleSet
 import io.gitlab.arturbosch.detekt.api.RuleSetProvider
