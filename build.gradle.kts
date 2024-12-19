@@ -6,7 +6,7 @@ plugins {
     alias(libs.plugins.detekt)
 }
 
-group = "io.faiyaz26.detekt.inclusivelanguage"
+group = "io.github.faiyaz26.detekt.inclusivelanguage"
 version = "0.0.1"
 
 if (!providers.environmentVariable("RELEASE").isPresent) {

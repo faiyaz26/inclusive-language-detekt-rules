@@ -1,4 +1,4 @@
-package io.faiyaz26.detekt.inclusivelanguage.rules
+package io.github.faiyaz26.detekt.inclusivelanguage.rules
 
 import io.gitlab.arturbosch.detekt.api.Config
 import io.gitlab.arturbosch.detekt.test.compileAndLint
