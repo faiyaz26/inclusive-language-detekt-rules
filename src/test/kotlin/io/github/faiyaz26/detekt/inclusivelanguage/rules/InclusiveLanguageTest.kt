@@ -20,10 +20,14 @@ class InclusiveLanguageTest {
             class Master {
                 fun slave() {}
             }
+            enum class Grandfather {
+                GRANDFATHERED
+            }
+            val simpleString = "grandfathered"
         """.trimIndent()
 
         val findings = rule.compileAndLint(code)
-        assertEquals(7, findings.size)
+        assertEquals(10, findings.size)
     }
 
     @Test
