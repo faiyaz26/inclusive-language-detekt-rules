@@ -82,7 +82,7 @@ internal class InclusiveLanguage(config: Config) : Rule(config) {
             CodeSmell(
                 issue,
                 Entity.from(element),
-                message = "$offendingText' contains non inclusive term. " +
+                message = "'$offendingText' contains non inclusive term. " +
                     "Consider using '$replacement' instead.",
             ),
         )
