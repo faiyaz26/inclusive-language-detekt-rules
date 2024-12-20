@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "io.github.faiyaz26"
-version = "0.0.1"
+version = "0.0.2"
 
 val detektVersion = libs.versions.detekt.get()
 
