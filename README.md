@@ -13,7 +13,7 @@ detektPlugins("io.github.faiyaz26:inclusive-language-detekt-rules:0.0.5")
 ```
 or if you're using a `libs.version.toml` file, add this there:
 ```
-inclusive-language-detekt-rules = { module = "io.github.faiyaz26:inclusive-language-detekt-rules", version = "0.0.1" }
+inclusive-language-detekt-rules = { module = "io.github.faiyaz26:inclusive-language-detekt-rules", version = "0.0.5" }
 ```
 and this in your `build.gradle` file:
 ```groovy
