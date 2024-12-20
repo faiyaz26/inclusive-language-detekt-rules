@@ -9,23 +9,6 @@ plugins {
 group = "io.github.faiyaz26"
 version = "0.0.1"
 
-//if (!providers.environmentVariable("RELEASE").isPresent) {
-//    val gitSha = providers.environmentVariable("GITHUB_SHA")
-//        .orElse(
-//            provider {
-//                // nest the provider, we don't want to invalidate the config cache for this
-//                providers.exec { commandLine("git", "rev-parse", "--short", "HEAD") }
-//                    .standardOutput
-//                    .asText
-//                    .map { it.trim() }
-//                    .get()
-//            }
-//        )
-//        .get()
-//
-//    version = "$version-$gitSha-SNAPSHOT"
-//}
-
 val detektVersion = libs.versions.detekt.get()
 
 repositories {
