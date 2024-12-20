@@ -27,7 +27,8 @@ internal class InclusiveLanguage(config: Config) : Rule(config) {
         debt = Debt.FIVE_MINS,
     )
 
-    private val shouldReportString = valueOrDefault("shouldReportString", "true").toBoolean()
+    private val shouldReportString = valueOrDefault("shouldReportString", true)
+    private val skipWords = valueOrDefault("skipWords", emptyList<String>()).toSet()
 
     private val termMappings = mapOf(
         "whitelist" to "allowlist",
@@ -90,6 +91,11 @@ internal class InclusiveLanguage(config: Config) : Rule(config) {
 
     private fun checkText(element: PsiElement, text: String = element.text) {
         val problematicWords = termMappings.keys.map { it.lowercase() }
+
+        if (skipWords.contains(text)) {
+            return
+        }
+
         for (problematicWord in problematicWords) {
             if (text.contains(problematicWord, ignoreCase = true)) {
                 reportCodeSmell(element, text, termMappings[problematicWord]!!)
