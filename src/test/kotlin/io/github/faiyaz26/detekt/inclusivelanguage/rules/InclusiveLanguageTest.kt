@@ -11,15 +11,19 @@ class InclusiveLanguageTest {
     @Test
     fun `reports non-inclusive language in variable names`() {
         val code = """
+            interface BlackBox {
+                fun whiteBox()
+            }
             val whitelist = listOf("allowed")
             val blacklist = listOf("denied")
+            val whitelistedBox = "opaque"
             class Master {
                 fun slave() {}
             }
         """.trimIndent()
 
         val findings = rule.compileAndLint(code)
-        assertEquals(4, findings.size)
+        assertEquals(7, findings.size)
     }
 
     @Test

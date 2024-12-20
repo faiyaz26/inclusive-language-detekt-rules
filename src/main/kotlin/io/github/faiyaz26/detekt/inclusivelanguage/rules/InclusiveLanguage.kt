@@ -8,6 +8,10 @@ import io.gitlab.arturbosch.detekt.api.Issue
 import io.gitlab.arturbosch.detekt.api.Rule
 import io.gitlab.arturbosch.detekt.api.Severity
 import org.jetbrains.kotlin.com.intellij.psi.PsiElement
+import org.jetbrains.kotlin.psi.KtClassOrObject
+import org.jetbrains.kotlin.psi.KtNamedFunction
+import org.jetbrains.kotlin.psi.KtPackageDirective
+import org.jetbrains.kotlin.psi.KtVariableDeclaration
 
 /**
  * Custom Detekt rule to detect non-inclusive language in code.
@@ -39,23 +43,34 @@ internal class InclusiveLanguage(config: Config) : Rule(config) {
 
         when {
             // Check identifiers (variable names, function names, etc.)
-            element.text.isNotBlank() -> {
-                checkText(element.text, element)
+            element is KtClassOrObject || element is KtNamedFunction || element is KtVariableDeclaration || element is KtPackageDirective -> {
+                if (element.text.isNotBlank()) {
+                    checkText(element.text, element)
+                }
             }
         }
     }
 
+    private fun reportCodeSmell(element: PsiElement,
+                                offendingText: String,
+                                replacement: String) {
+        report(
+            CodeSmell(
+                issue,
+                Entity.from(element),
+                message = "Non-inclusive term '$offendingText' found. " +
+                        "Consider using '$replacement' instead.",
+            ),
+        )
+    }
+
     private fun checkText(text: String, element: PsiElement) {
         val problematicWords = termMappings.keys.map { it.lowercase() }
-        if (problematicWords.contains(text.lowercase())) {
-            report(
-                CodeSmell(
-                    issue,
-                    Entity.from(element),
-                    message = "Non-inclusive term '$text' found. " +
-                        "Consider using '${termMappings[text.lowercase()]}' instead.",
-                ),
-            )
+        for (problematicWord in problematicWords) {
+            if (text.contains(problematicWord, ignoreCase = true)) {
+                reportCodeSmell(element, problematicWord, termMappings[problematicWord]!!)
+                break
+            }
         }
     }
 
