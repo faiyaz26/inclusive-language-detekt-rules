@@ -1066,4 +1066,5 @@ ruleauthors:
 #  InclusiveLanguage:
 #    active: true
 #    shouldReportString: false
+#    skipWords: []
 #  excludes: ["**Test.kt"]

@@ -9,7 +9,7 @@ or "blacklist".
 ## Usage
 In the `dependencies` block of your `build.gradle` file, add the following:
 ```groovy
-detektPlugins("io.github.faiyaz26:inclusive-language-detekt-rules:0.0.1")
+detektPlugins("io.github.faiyaz26:inclusive-language-detekt-rules:0.0.5")
 ```
 or if you're using a `libs.version.toml` file, add this there:
 ```
@@ -27,6 +27,9 @@ InclusiveLanguageRuleSet:
   active: true
   InclusiveLanguage:
     active: true
+    shouldReportString: false
+    skipWords: []
+  excludes: ["**Test.kt"]
 ```
 
 # Releasing
